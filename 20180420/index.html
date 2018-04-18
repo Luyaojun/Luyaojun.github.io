@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
 
+    <link rel="stylesheet" type="text/css" href="./css/video-js.min.css">
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
 
@@ -25,9 +26,19 @@
                 <a id="Home" href="http://www3.muroran-it.ac.jp/enes/people.html" class="nav-link">Homepage</a>
             </li>
         </ul>
-        <div id="media_container" class="col-sm-12">
+        <div id="media_container" class="col-md-12">
             <img src="./img/cape-chikyu0.jpg" class="img-fluid" alt="Responsive image">
+            <div class="col-md-12">
+                <video id="Video-bar" class="video-js" controls preload="auto" data-setup="{}" height="300" width="300">
+                    <source src="./img/test2.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
     </div>
+
+    <script src="./js/video.min.js"></script>
+    <script>
+        videojs.options.flash.swf = "video-js.swf";
+    </script>
 </body>
 </html>
