@@ -14,7 +14,7 @@ $(document).ready(function () {
         $("#books_container").css("display","block");
     });
 
-    var video_player = videojs("#Video-bar");
-    var player_width = $(".col-md-12").css("width");
-    video_player.width(player_width);
+    //var video_player = videojs("#Video-bar");
+    //var player_width = $(".col-md-12").css("width");
+    //video_player.width();
 });

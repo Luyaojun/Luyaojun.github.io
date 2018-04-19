@@ -5,6 +5,15 @@ div#media_container{
     margin-top: 20px;
     display: none;
 }
+div#video_container{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+}
+#Video-bar{
+    margin: 0 auto;
+}
 div#books_container{
     margin-top: 20px;
     display: none;
