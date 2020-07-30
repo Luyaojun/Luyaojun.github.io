@@ -24,14 +24,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
 button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -47,7 +47,7 @@ sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); 
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px !important; }
+figure > table { margin: 0px; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
@@ -82,22 +82,24 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
 @media print {
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
   html.blink-to-pdf { font-size: 13px; }
   .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
   .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
 pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
 .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
@@ -141,7 +143,7 @@ a.md-print-anchor { white-space: pre !important; border-width: initial !importan
 .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
 table tr th { border-bottom: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
@@ -160,12 +162,16 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 
 @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
 
-html {
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
     font-size: 16px;
 }
 
 body {
-    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: rgb(51, 51, 51);
     line-height: 1.6;
 }
@@ -176,6 +182,19 @@ body {
   	padding: 30px;
     padding-bottom: 100px;
 }
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
 #write > ul:first-child,
 #write > ol:first-child{
     margin-top: 30px;
@@ -504,6 +523,6 @@ header, .context-menu, .megamenu-content, footer{
 </style>
 </head>
 <body class='typora-export os-windows' >
-<div  id='write'  class = 'is-node'><h1><a name="日常活动" class="md-header-anchor"></a><span>日常活动</span></h1><ul><li><span>DNF礼遇特权(每天上线角色签到，消耗材料)~3.19</span></li><li><span>灵魂之冢/眩惑之塔/无相冥渊</span></li><li><span>普雷每日</span></li></ul><hr /><ul><li><span>赛利亚祝愿之礼(1.14-2.20登录送时限白色天11，后续升永久)~3.5</span></li><li><span>送福灵鼠礼盒(积分，魔盒锤子)~3.5</span></li><li><span>梦想装扮合成器(8合1)~3.19</span></li><li><span>使徒的神秘宝藏(春节套推荐图罐子)~3.19</span></li><li><span>积分商城~4.9</span></li><li><span>春节礼包~4.9</span></li><li><span>阿拉德探险记~3.19</span></li><li><span>凯丽豪爽出租装备~3.19</span></li><li><span>每日签到得好礼(百级深渊票，天空永久券)~3.19</span></li><li><span>带着托比去寻宝(每周站街3小时。百级深渊票，天空永久券)~3.19</span></li><li><span>阿拉德谋略战(1.14-4.9，灿烂自选</span><span>*</span><span>2，黄金书，满属性附魔，腰带技能宝珠，使徒能量</span><span>*</span><span>2/周，团本门票/周，红10体验券</span><span>*</span><span>3/周，黑瞳石</span><span>*</span><span>5/周)~4.9</span></li><li><span>周周惊喜乐开怀(周签到超星空通行证，超界跨界石，黑瞳石</span><span>*</span><span>150，天空永久券</span><span>*</span><span>2，超界)~4.2</span></li><li><span>累计在线得好礼(1.14-2.20每天站街2小时，超星空通行证、装备提升道具若干，超界，+11强化券，天空永久券)~3.5</span></li></ul><h1><a name="周常团本" class="md-header-anchor"></a><span>周常团本</span></h1><ul><li><span>周常本：周四</span></li><li><span>魔界大战(CP)：周四</span></li><li><span>灾难：周四</span></li><li><span>普雷：周六</span></li><li><span>泰波尔斯：周四</span></li><li><span>再战魔界(魔界盟会)：周一</span></li><li><span>工会本：周四</span></li><li><span>代号:希望：周一</span></li><li><span>卢克：周日</span></li><li><span>漩涡：周二</span></li><li><span>超时空之战：周四</span></li><li><span>安图恩：周四</span></li></ul><h1><a name="版本变动" class="md-header-anchor"></a><span>版本变动</span></h1></div>
+<div  id='write'  class = ''><h1><a name="日常活动" class="md-header-anchor"></a><span>日常活动</span></h1><ul><li><span>2+2 | 3+3 | 深渊 | 风暴航路</span></li><li><span>洞察之眼：被深渊侵蚀的圣殿</span></li><li><span>DNF礼遇特权</span></li><li><span>战令</span></li><li><span>灵魂之冢/眩惑之塔/无相冥渊</span></li><li><span>普雷每日</span></li></ul><hr /><ul><li><span>月限购礼盒（增幅特惠，智慧引导特惠）[7.30~8.25]</span></li><li><span>极跃大挑战（+10锻5百级传说武器，换装，帐绑lv100级史诗罐</span><span>*</span><span>1，纯净的增幅书</span><span>*</span><span>2，神器护石随机</span><span>*</span><span>1）[7.30~9.22]</span></li><li><span>沙滩排球大作战（疲劳药，时间引导石）[7.30~8.25]</span></li><li><span>跨越银河的相会（异界气息净化书，扭转，+7增幅，材质转换器</span><span>*</span><span>2，继承装置</span><span>*</span><span>2，魂灭结晶，司南）[7.30~8.25]</span></li><li><span>魔盒更新[7.30~8.25]</span></li><li><span>欢乐秘宝（本质是50点券返100代币）[7.30~8.11]</span></li><li><span>男神枪三觉惊喜礼包（同往期三觉礼包）[7.30~8.25]</span></li><li><span>第一期积分商城（黄金品级调整箱，徽章邮递装置，夏日皮肤开孔装置）[7.16~8.13]</span></li><li><span>夏日礼包[7.16~8.25]</span></li><li><span>刨冰达人（黄金增幅书，品级调整箱，装备提升礼盒）[7.16~8.13]</span></li><li><span>每日签到得好礼（时间引导石，神器护石自选</span><span>*</span><span>1）[7.16~8.13]</span></li><li><span>冥域时空（时间引导石）[7.16~8.13]</span></li><li><span>周周惊喜乐开怀（智慧引导通行证，武器跨界石）[6.18~8.13]</span></li></ul><h1><a name="周常团本" class="md-header-anchor"></a><span>周常团本</span></h1><ul><li><span>洞察之眼：复活圣殿：周四</span></li><li><span>红玉：周四</span></li><li><span>新龟龟：周四</span></li><li><span>魔界大战(CP)：周四</span></li><li><span>灾难区域：周四</span></li><li><span>普雷：周六</span></li><li><span>泰波尔斯：周四</span></li><li><span>再战魔界(魔界盟会)：周一</span></li><li><span>工会本：周四</span></li><li><span>代号:希望：周一</span></li><li><span>卢克：周日</span></li><li><span>漩涡：周二</span></li><li><span>超时空之战：周四</span></li><li><span>安图恩：周四</span></li></ul><h1><a name="版本变动" class="md-header-anchor"></a><span>版本变动</span></h1><h3><a name="20200730-男枪手三觉--便利性改版" class="md-header-anchor"></a><span>2020.07.30 男枪手三觉 | 便利性改版</span></h3><ul><li><span>团本开始前签到系统</span></li><li><span>装备品级调整箱，装扮属性调整箱，黄金蜜蜡改为账号绑定</span></li><li><span>时装取消穿戴等级限制，几乎所有装扮开放染色功能</span></li><li><span>基础仓库格子数提升8-&gt;24</span></li><li><span>徽章加入排列，快速选择功能</span></li><li><span>各类契约取消点券售卖，统一改为金币售卖</span></li></ul></div>
 </body>
 </html>
